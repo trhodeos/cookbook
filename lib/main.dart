@@ -25,18 +25,17 @@ class CookbookApp extends StatelessWidget {
     }
     // The other paths we support are in the routes table.
     return null;
-
   }
+
   @override
   Widget build(BuildContext context) {
-
     return new MaterialApp(
       title: 'Cookbook',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
       routes: <String, WidgetBuilder>{
-        '/':         (BuildContext context) => new MyCookbookPage(title: "My Cookbook"),
+        '/': (BuildContext context) => new MyCookbookPage(title: "My Cookbook"),
       },
       onGenerateRoute: _getRoute,
     );

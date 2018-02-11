@@ -1,4 +1,3 @@
-
 enum AmountType {
   liquid,
   count,
@@ -14,7 +13,7 @@ enum MeasurementUnit {
 }
 
 String _measurementUnitShortened(MeasurementUnit unit) {
-  switch(unit) {
+  switch (unit) {
     case MeasurementUnit.cup:
       return 'c';
     case MeasurementUnit.tablespoon:
@@ -32,14 +31,17 @@ class Amount {
   final num amount;
   final MeasurementUnit measurementUnit;
   final AmountType type;
-  Amount._internal(this.amount, this.type, {this.measurementUnit: MeasurementUnit.unset});
+
+  Amount._internal(this.amount, this.type,
+      {this.measurementUnit: MeasurementUnit.unset});
 
   factory Amount.count(num amount) {
     return new Amount._internal(amount, AmountType.count);
   }
 
   factory Amount.measurement(num amount, MeasurementUnit measurementUnit) {
-    return new Amount._internal(amount, AmountType.measurement, measurementUnit: measurementUnit);
+    return new Amount._internal(
+        amount, AmountType.measurement, measurementUnit: measurementUnit);
   }
 
   @override
