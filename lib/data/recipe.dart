@@ -8,8 +8,9 @@ class RecipeIngredient {
 }
 
 class Recipe {
+  final String name;
   final Uri uri;
   final List<RecipeIngredient> ingredients;
 
-  const Recipe(this.uri, this.ingredients);
+  const Recipe(this.name, this.uri, this.ingredients);
 }

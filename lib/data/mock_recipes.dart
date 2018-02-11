@@ -2,7 +2,7 @@ import 'package:cookbook/data/ingredient.dart';
 import 'package:cookbook/data/recipe.dart';
 
 List<Recipe> allRecipes = <Recipe>[
-  new Recipe(Uri.parse("https://cooking.nytimes.com/recipes/11248-pumpkin-and-chickpea-hot-pot"), <RecipeIngredient>[
+  new Recipe("Pumpkin and chickpea hot pot", Uri.parse("https://cooking.nytimes.com/recipes/11248-pumpkin-and-chickpea-hot-pot"), <RecipeIngredient>[
     new RecipeIngredient(new Amount.measurement(3, MeasurementUnit.tablespoon), new Ingredient("Vegetable oil")),
     new RecipeIngredient(new Amount.count(.5), new Ingredient("Onion")),
     new RecipeIngredient(new Amount.measurement(.25, MeasurementUnit.teaspoon), new Ingredient("Salt")),
@@ -16,7 +16,7 @@ List<Recipe> allRecipes = <Recipe>[
     new RecipeIngredient(new Amount.count(4), new Ingredient("Chickpea can")),
     new RecipeIngredient(new Amount.count(.25), new Ingredient("Cilantro")),
   ]),
-  new Recipe(Uri.parse("http://www.seriouseats.com/recipes/2016/10/broccoli-cheddar-cheese-soup-food-lab-recipe.html"), <RecipeIngredient>[
+  new Recipe("Broccoli chedder cheese soup", Uri.parse("http://www.seriouseats.com/recipes/2016/10/broccoli-cheddar-cheese-soup-food-lab-recipe.html"), <RecipeIngredient>[
     new RecipeIngredient(new Amount.count(1), new Ingredient("Broccoli")),
     new RecipeIngredient(new Amount.measurement(2, MeasurementUnit.tablespoon), new Ingredient("Vegetable oil")),
     new RecipeIngredient(new Amount.measurement(3, MeasurementUnit.tablespoon), new Ingredient("Butter")),
