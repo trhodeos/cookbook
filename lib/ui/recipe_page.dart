@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:cookbook/data/recipe.dart';
 import 'package:cookbook/services/recipe_service.dart';
 import 'package:cookbook/services/service_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class RecipePage extends StatefulWidget {
@@ -25,6 +28,14 @@ class _RecipePageState extends State<RecipePage> {
     _getRecipe(widget.name);
   }
 
+  Future<Null> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false, forceWebView: false);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget recipeBody = new Center();
@@ -32,12 +43,19 @@ class _RecipePageState extends State<RecipePage> {
     if (recipe != null) {
       var children = <Widget>[
         new Container(child: new Text(recipe.name), padding: amount),
-        new Container(child: new Text(recipe.uri.toString()), padding: amount),
+        new ListTile(
+            title: new Text("Original recipe"),
+            trailing: new Icon(Icons.arrow_forward),
+            onTap: () {
+              _launchInBrowser(recipe.uri.toString());
+            }),
         new Container(child: new Divider(), padding: amount),
         new Container(child: new Text("Ingredients:"), padding: amount),
       ];
-      children.addAll(recipe.ingredients.map((i) => new _RecipeIngredientItem(i)));
-      recipeBody = new ListView(padding: new EdgeInsets.all(32.0), children: children);
+      children.addAll(
+          recipe.ingredients.map((i) => new _RecipeIngredientItem(i)));
+      recipeBody =
+      new ListView(padding: new EdgeInsets.all(32.0), children: children);
     }
     return new Scaffold(
       appBar: new AppBar(
@@ -57,6 +75,7 @@ class _RecipePageState extends State<RecipePage> {
 
 class _RecipeIngredientItem extends StatelessWidget {
   final RecipeIngredient ingredient;
+
   _RecipeIngredientItem(this.ingredient);
 
   @override
