@@ -5,12 +5,6 @@ enum AmountType {
   weight,
   measurement,
 }
-enum LiquidUnit {
-  unset,
-}
-enum WeightUnit {
-  unset,
-}
 enum MeasurementUnit {
   unset,
   ounce,
@@ -19,28 +13,42 @@ enum MeasurementUnit {
   cup,
 }
 
+String _measurementUnitShortened(MeasurementUnit unit) {
+  switch(unit) {
+    case MeasurementUnit.cup:
+      return 'c';
+    case MeasurementUnit.tablespoon:
+      return 'tbsp';
+    case MeasurementUnit.teaspoon:
+      return 'tsp';
+    case MeasurementUnit.ounce:
+      return 'oz';
+    default:
+      return unit.toString();
+  }
+}
+
 class Amount {
   final num amount;
-  final LiquidUnit liquidUnit;
-  final WeightUnit weightUnit;
   final MeasurementUnit measurementUnit;
   final AmountType type;
-  Amount._internal(this.amount, this.type, {this.liquidUnit: LiquidUnit.unset, this.weightUnit: WeightUnit.unset, this.measurementUnit: MeasurementUnit.unset});
-
-  factory Amount.liquid(num amount, LiquidUnit liquidUnit) {
-    return new Amount._internal(amount, AmountType.liquid, liquidUnit: liquidUnit);
-  }
+  Amount._internal(this.amount, this.type, {this.measurementUnit: MeasurementUnit.unset});
 
   factory Amount.count(num amount) {
     return new Amount._internal(amount, AmountType.count);
   }
 
-  factory Amount.weight(num amount, WeightUnit weightUnit) {
-    return new Amount._internal(amount, AmountType.weight, weightUnit: weightUnit);
-  }
-
   factory Amount.measurement(num amount, MeasurementUnit measurementUnit) {
     return new Amount._internal(amount, AmountType.measurement, measurementUnit: measurementUnit);
+  }
+
+  @override
+  String toString() {
+    if (type == AmountType.measurement) {
+      var shortenedUnit = _measurementUnitShortened(measurementUnit);
+      return "$amount $shortenedUnit";
+    }
+    return "$amount";
   }
 }
 
