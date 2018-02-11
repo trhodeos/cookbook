@@ -30,7 +30,9 @@ class _MyCookbookPageState extends State<MyCookbookPage> {
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/add-new-recipe');
+        },
         tooltip: 'Add new recipe',
         child: new Icon(Icons.add),
       ),

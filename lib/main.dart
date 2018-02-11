@@ -1,3 +1,4 @@
+import 'package:cookbook/ui/add_new_recipe_page.dart';
 import 'package:cookbook/ui/my_cookbook_page.dart';
 import 'package:cookbook/ui/recipe_page.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class CookbookApp extends StatelessWidget {
       ),
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => new MyCookbookPage(title: "My Cookbook"),
+        '/add-new-recipe': (BuildContext context) => new AddNewRecipePage(),
       },
       onGenerateRoute: _getRoute,
     );
